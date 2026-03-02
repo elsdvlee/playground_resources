@@ -1,0 +1,65 @@
+@prefix fno: <http://semweb.mmlab.be/ns/function#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdf: 	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+@prefix fnml: <http://semweb.mmlab.be/ns/fnml#> .
+
+<http://semweb.mmlab.be/ns/fnml>  rdf:type owl:Ontology ;
+
+                                      rdf:type voaf:Vocabulary;
+                                      
+                                      vann:preferredNamespacePrefix "fnml";
+                                      
+                                      vann:preferredNamespaceUri "http://semweb.mmlab.be/ns/fnml#";
+                                      
+                                      rdfs:label "The Function RML Extension"@en ;
+                                      
+                                      dct:title "The Function RML Extension"@en ;
+                                      
+                                      dct:description "This extension allows connecting RML with Fno, http://rml.io and https://fno.io, respectively"@en;
+                                      
+                                      rdfs:comment """- Version 0.1.1: updated website and affiliation
+- Version 0.1: creation."""@en ;
+                                      
+                                      owl:versionIRI <http://semweb.mmlab.be/ns/fnml/0.1.1> ;
+                                      owl:versionInfo "0.1.1" ;
+                                      
+                                      rdfs:seeAlso <https://fno.io> ;
+                                      rdfs:seeAlso <http://rml.io> ;
+                                      
+                                      dct:modified "2017-10-31"^^xsd:date ;
+                                     
+                                      dct:issued "2016-12-16"^^xsd:date ;
+                                                                            
+                                      dct:rights "Copyright © Ghent University – imec – IDLab"@en ;
+                                      
+                                      cc:license <http://creativecommons.org/license/by/3.0/> ;
+                                     
+                                      foaf:primaryTopic <http://semweb.mmlab.be/ns/fnml> ;
+									  
+									  dct:creator [ 
+									  
+									  rdf:type foaf:Person ;
+                                      
+                                      foaf:mbox "mailto:Anastasia.dimou@UGent.be" ;
+                                      
+                                      foaf:name "Anastasia Dimou"@en
+                                      
+                                      ] ;
+                                      
+                                      dct:contributor <http://ben.de-meester.org/#me> .
+									  
+<http://ben.de-meester.org/#me> foaf:name "Ben De Meester"@en .
+
+fnml:FunctionMap rdf:type owl:Class .
+
+fnml:functionValue rdf:type owl:DatatypeProperty .
