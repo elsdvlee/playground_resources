@@ -7,7 +7,7 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix ex: <http://example.com/> .
-@prefix rmls: <http://semweb.mmlab.be/ns/rml#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
 @prefix ql: <http://semweb.mmlab.be/ns/ql#> .
 @prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
 @prefix sd: <http://www.w3.org/ns/sparql-service-description#> .
@@ -23,9 +23,9 @@ schema:TriplesMapShape
     sh:message "R2RML Triples Map violation" ;
     sh:closed "true"^^xsd:boolean ;
     sh:ignoredProperties (rdf:type rr:subject rr:subjectMap) ;
-    # A single rmls:logicalSource for a rr:triplesMap is required.
+    # A single rml:logicalSource for a rr:triplesMap is required.
     sh:property [
-        sh:path rmls:logicalSource ;
+        sh:path rml:logicalSource ;
         sh:name "RML Logical Source" ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -66,16 +66,16 @@ schema:TriplesMapShape
 schema:LogicalSourceShape
     a sh:NodeShape ;
     sh:message "RML Logical Source violation" ;
-    sh:targetObjectsOf rmls:logicalSource ;
+    sh:targetObjectsOf rml:logicalSource ;
     sh:closed "true"^^xsd:boolean ;
-    sh:ignoredProperties (rdf:type rmls:source rr:sqlVersion rr:tableName rr:sqlQuery rmls:query rmls:referenceFormulation rmls:iterator) ;
+    sh:ignoredProperties (rdf:type rml:source rr:sqlVersion rr:tableName rr:sqlQuery rml:query rml:referenceFormulation rml:iterator) ;
     sh:xone (
     # Local file JSON or XML
     [
-        # rmls:source is Literal -> local file
+        # rml:source is Literal -> local file
         sh:closed "true"^^xsd:boolean ;
         sh:property [
-            sh:path rmls:source ;
+            sh:path rml:source ;
             sh:name "RML source" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -83,14 +83,14 @@ schema:LogicalSourceShape
             sh:datatype xsd:string ;
         ] ;
         sh:property [
-            sh:path rmls:referenceFormulation ;
+            sh:path rml:referenceFormulation ;
             sh:name "RML reference formulation" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:in (ql:JSONPath ql:XPath) ;
         ] ;
         sh:property [
-            sh:path rmls:iterator ;
+            sh:path rml:iterator ;
             sh:name "RML iterator" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -100,10 +100,10 @@ schema:LogicalSourceShape
     ]
     # Local file CSV/TSV
     [
-        # rmls:source is Literal -> local file
+        # rml:source is Literal -> local file
         sh:closed "true"^^xsd:boolean ;
         sh:property [
-            sh:path rmls:source ;
+            sh:path rml:source ;
             sh:name "RML source" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -111,7 +111,7 @@ schema:LogicalSourceShape
             sh:datatype xsd:string ;
         ] ;
         sh:property [
-            sh:path rmls:referenceFormulation ;
+            sh:path rml:referenceFormulation ;
             sh:name "RML reference formulation" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -120,10 +120,10 @@ schema:LogicalSourceShape
     ]
     # Local file RDF
     [
-        # rmls:source is Literal -> local file
+        # rml:source is Literal -> local file
         sh:closed "true"^^xsd:boolean ;
         sh:property [
-            sh:path rmls:source ;
+            sh:path rml:source ;
             sh:name "RML source" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -131,14 +131,14 @@ schema:LogicalSourceShape
             sh:datatype xsd:string ;
         ] ;
         sh:property [
-            sh:path  rmls:referenceFormulation ;
+            sh:path  rml:referenceFormulation ;
             sh:name "RML reference formulation" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:in ( ql:SPARQL ) ;
         ] ;
         sh:property [
-            sh:path rmls:query ;
+            sh:path rml:query ;
             sh:name "RML query" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -148,10 +148,10 @@ schema:LogicalSourceShape
     ]
     # SQL database rr:tableName
     [
-        # rmls:source is Blank Node or IRI -> external data source
+        # rml:source is Blank Node or IRI -> external data source
         sh:closed "true"^^xsd:boolean ;
         sh:property [
-            sh:path rmls:source ;
+            sh:path rml:source ;
             sh:name "RML source" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -166,7 +166,7 @@ schema:LogicalSourceShape
             sh:in (rr:SQL2008) ; # We only support SQL 2008 at the moment
         ];
         sh:property [
-            sh:path rmls:referenceFormulation ;
+            sh:path rml:referenceFormulation ;
             sh:name "RML reference formulation" ;
             sh:minCount 0 ;
             sh:maxCount 1 ;
@@ -183,10 +183,10 @@ schema:LogicalSourceShape
     ]
     # SQL database rr:sqlQuery
     [
-        # rmls:source is Blank Node or IRI -> external data source
+        # rml:source is Blank Node or IRI -> external data source
         sh:closed "true"^^xsd:boolean ;
         sh:property [
-            sh:path rmls:source ;
+            sh:path rml:source ;
             sh:name "RML source" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -201,7 +201,7 @@ schema:LogicalSourceShape
             sh:in (rr:SQL2008) ; # We only support SQL 2008 at the moment
         ];
         sh:property [
-            sh:path rmls:referenceFormulation ;
+            sh:path rml:referenceFormulation ;
             sh:name "RML reference formulation" ;
             sh:minCount 0 ;
             sh:maxCount 1 ;
@@ -216,12 +216,12 @@ schema:LogicalSourceShape
             sh:datatype xsd:string ;
         ] 
     ]
-    # SQL database rmls:query
+    # SQL database rml:query
     [
-        # rmls:source is Blank Node or IRI -> external data source
+        # rml:source is Blank Node or IRI -> external data source
         sh:closed "true"^^xsd:boolean ;
         sh:property [
-            sh:path rmls:source ;
+            sh:path rml:source ;
             sh:name "RML source" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -236,14 +236,14 @@ schema:LogicalSourceShape
             sh:in (rr:SQL2008) ; # We only support SQL 2008 at the moment
         ];
         sh:property [
-            sh:path rmls:referenceFormulation ;
+            sh:path rml:referenceFormulation ;
             sh:name "RML reference formulation" ;
             sh:minCount 0 ;
             sh:maxCount 1 ;
             sh:in (ql:CSV ql:TSV) ;
         ] ;
         sh:property [
-            sh:path rmls:query ;
+            sh:path rml:query ;
             sh:name "RML query" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -251,12 +251,12 @@ schema:LogicalSourceShape
             sh:datatype xsd:string ;
         ] 
     ]
-    # SQL database rmls:query with rr:tableName
+    # SQL database rml:query with rr:tableName
     [
-        # rmls:source is Blank Node or IRI -> external data source
+        # rml:source is Blank Node or IRI -> external data source
         sh:closed "true"^^xsd:boolean ;
         sh:property [
-            sh:path rmls:source ;
+            sh:path rml:source ;
             sh:name "RML source" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -271,7 +271,7 @@ schema:LogicalSourceShape
             sh:in (rr:SQL2008) ; # We only support SQL 2008 at the moment
         ];
         sh:property [
-            sh:path rmls:query ;
+            sh:path rml:query ;
             sh:name "RML query" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -279,7 +279,7 @@ schema:LogicalSourceShape
             sh:datatype xsd:string ;
         ];
         sh:property [
-            sh:path rmls:referenceFormulation ;
+            sh:path rml:referenceFormulation ;
             sh:name "RML reference formulation" ;
             sh:minCount 0 ;
             sh:maxCount 1 ;
@@ -296,10 +296,10 @@ schema:LogicalSourceShape
     ]
     # SPARQL endpoint JSON/XML format
     [
-        # rmls:source is Blank Node or IRI -> external data source
+        # rml:source is Blank Node or IRI -> external data source
         sh:closed "true"^^xsd:boolean ;
         sh:property [
-            sh:path rmls:source ;
+            sh:path rml:source ;
             sh:name "RML source" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -307,14 +307,14 @@ schema:LogicalSourceShape
             sh:node schema:SPARQLSourceShape ;
         ] ;
         sh:property [
-            sh:path rmls:referenceFormulation ;
+            sh:path rml:referenceFormulation ;
             sh:name "RML reference formulation" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:in (ql:JSONPath ql:XPath) ;
         ] ;
         sh:property [
-            sh:path rmls:iterator ;
+            sh:path rml:iterator ;
             sh:name "RML iterator" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -322,7 +322,7 @@ schema:LogicalSourceShape
             sh:datatype xsd:string ;
         ] ;
         sh:property [
-            sh:path rmls:query ;
+            sh:path rml:query ;
             sh:name "RML query" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -332,10 +332,10 @@ schema:LogicalSourceShape
     ]
     # SPARQL endpoint CSV/TSV format
     [
-        # rmls:source is Blank Node or IRI -> external data source
+        # rml:source is Blank Node or IRI -> external data source
         sh:closed "true"^^xsd:boolean ;
         sh:property [
-            sh:path rmls:source ;
+            sh:path rml:source ;
             sh:name "RML source" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -343,14 +343,14 @@ schema:LogicalSourceShape
             sh:node schema:SPARQLSourceShape ;
         ] ;
         sh:property [
-            sh:path rmls:referenceFormulation ;
+            sh:path rml:referenceFormulation ;
             sh:name "RML reference formulation" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:in ( ql:CSV ql:TSV ) ;
         ] ;
         sh:property [
-            sh:path rmls:query ;
+            sh:path rml:query ;
             sh:name "RML query" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -360,10 +360,10 @@ schema:LogicalSourceShape
     ]
     # DCAT dataset JSON/XML
     [
-        # rmls:source is Blank Node or IRI -> external data source
+        # rml:source is Blank Node or IRI -> external data source
         sh:closed "true"^^xsd:boolean ;
         sh:property [
-            sh:path rmls:source ;
+            sh:path rml:source ;
             sh:name "RML source" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -371,14 +371,14 @@ schema:LogicalSourceShape
             sh:node schema:DCATSourceShape ;
         ] ;
         sh:property [
-            sh:path rmls:referenceFormulation ;
+            sh:path rml:referenceFormulation ;
             sh:name "RML reference formulation" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:in ( ql:JSONPath ql:XPath ) ;
         ] ;
         sh:property [
-            sh:path rmls:iterator ;
+            sh:path rml:iterator ;
             sh:name "RML iterator" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -388,10 +388,10 @@ schema:LogicalSourceShape
     ]
     # DCAT dataset CSV/TSV
     [
-        # rmls:source is Blank Node or IRI -> external data source
+        # rml:source is Blank Node or IRI -> external data source
         sh:closed "true"^^xsd:boolean ;
         sh:property [
-            sh:path rmls:source ;
+            sh:path rml:source ;
             sh:name "RML source" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -399,7 +399,7 @@ schema:LogicalSourceShape
             sh:node schema:DCATSourceShape ;
         ] ;
         sh:property [
-            sh:path rmls:referenceFormulation ;
+            sh:path rml:referenceFormulation ;
             sh:name "RML reference formulation" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -408,10 +408,10 @@ schema:LogicalSourceShape
     ]
     # DCAT dataset RDF
     [
-        # rmls:source is Blank Node or IRI -> external data source
+        # rml:source is Blank Node or IRI -> external data source
         sh:closed "true"^^xsd:boolean ;
         sh:property [
-            sh:path rmls:source ;
+            sh:path rml:source ;
             sh:name "RML source" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -419,14 +419,14 @@ schema:LogicalSourceShape
             sh:node schema:DCATSourceShape ;
         ] ;
         sh:property [
-            sh:path rmls:referenceFormulation ;
+            sh:path rml:referenceFormulation ;
             sh:name "RML reference formulation" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:in (ql:JSONPath ql:XPath) ;
         ] ;
         sh:property [
-            sh:path rmls:query ;
+            sh:path rml:query ;
             sh:name "RML query" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -436,10 +436,10 @@ schema:LogicalSourceShape
     ]
     # Hydra Web API JSON/XML
     [
-        # rmls:source is Blank Node or IRI -> external data source
+        # rml:source is Blank Node or IRI -> external data source
         sh:closed "true"^^xsd:boolean ;
         sh:property [
-            sh:path rmls:source ;
+            sh:path rml:source ;
             sh:name "RML source" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -447,14 +447,14 @@ schema:LogicalSourceShape
             sh:node schema:HydraWebAPISourceShape ;
         ] ;
         sh:property [
-            sh:path rmls:referenceFormulation ;
+            sh:path rml:referenceFormulation ;
             sh:name "RML reference formulation" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:in ( ql:JSONPath ql:XPath ) ;
         ] ;
         sh:property [
-            sh:path rmls:iterator ;
+            sh:path rml:iterator ;
             sh:name "RML iterator" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -464,10 +464,10 @@ schema:LogicalSourceShape
     ]
     # Hydra Web API RDF
     [
-        # rmls:source is Blank Node or IRI -> external data source
+        # rml:source is Blank Node or IRI -> external data source
         sh:closed "true"^^xsd:boolean ;
         sh:property [
-            sh:path rmls:source ;
+            sh:path rml:source ;
             sh:name "RML source" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -475,14 +475,14 @@ schema:LogicalSourceShape
             sh:node schema:HydraWebAPISourceShape ;
         ] ;
         sh:property [
-            sh:path rmls:referenceFormulation ;
+            sh:path rml:referenceFormulation ;
             sh:name "RML reference formulation" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:in ( ql:SPARQL ) ;
         ] ;
         sh:property [
-            sh:path rmls:iterator ;
+            sh:path rml:iterator ;
             sh:name "RML iterator" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -492,10 +492,10 @@ schema:LogicalSourceShape
     ]
     # CSVW
     [
-        # rmls:source is Blank Node or IRI -> external data source
+        # rml:source is Blank Node or IRI -> external data source
         sh:closed "true"^^xsd:boolean ;
         sh:property [
-            sh:path rmls:source ;
+            sh:path rml:source ;
             sh:name "RML source" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -503,7 +503,7 @@ schema:LogicalSourceShape
             sh:node schema:CSVWSourceShape ;
         ] ;
         sh:property [
-            sh:path rmls:referenceFormulation ;
+            sh:path rml:referenceFormulation ;
             sh:name "RML reference formulation" ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -884,11 +884,11 @@ schema:SubjectMapShape
     a sh:NodeShape ;
     sh:targetClass rr:SubjectMap ;
     sh:closed "true"^^xsd:boolean ;
-    sh:ignoredProperties (rdf:type rr:template rmls:reference rr:constant) ;
+    sh:ignoredProperties (rdf:type rr:template rml:reference rr:constant) ;
     sh:name "R2RML rr:subjectMap" ;
-    sh:description "R2RML rr:subjectMap requires either 1 rr:template or 1 rmls:reference or 1 rr:constant, optionally 1 rr:termType to indicate the type of term and 1 rr:class to generate an rdf:type triple." ;
+    sh:description "R2RML rr:subjectMap requires either 1 rr:template or 1 rml:reference or 1 rr:constant, optionally 1 rr:termType to indicate the type of term and 1 rr:class to generate an rdf:type triple." ;
     sh:message "R2RML rr:subjectMap violation" ;
-    # Either an rr:template or rmls:reference or rr:constant is required
+    # Either an rr:template or rml:reference or rr:constant is required
     sh:xone (
         [
             sh:property [
@@ -902,7 +902,7 @@ schema:SubjectMapShape
         ]
         [
             sh:property [
-                sh:path rmls:reference ;
+                sh:path rml:reference ;
                 sh:name "RML reference" ;
                 sh:minCount 1 ;
                 sh:maxCount 1 ;
@@ -974,10 +974,10 @@ schema:ObjectMapShape
     sh:targetClass rr:ObjectMap ;
     sh:name "R2RML rr:objectMap" ;
     sh:closed "true"^^xsd:boolean ;
-    sh:ignoredProperties (rdf:type rr:template rmls:reference rr:constant rr:termType rr:language rr:datatype) ;
-    sh:description "R2RML rr:objectMap specifies the object used to generate a triple. It requires either 1 rr:template or 1 rmls:reference or 1 rr:constant and optionally 1 rr:termType, 1 rr:datatype or 1 rr:language." ;
+    sh:ignoredProperties (rdf:type rr:template rml:reference rr:constant rr:termType rr:language rr:datatype) ;
+    sh:description "R2RML rr:objectMap specifies the object used to generate a triple. It requires either 1 rr:template or 1 rml:reference or 1 rr:constant and optionally 1 rr:termType, 1 rr:datatype or 1 rr:language." ;
     sh:message "R2RML rr:objectMap violation" ;
-    # Either an rr:template or rmls:reference or rr:constant is required
+    # Either an rr:template or rml:reference or rr:constant is required
     sh:xone (
         [
             sh:property [
@@ -990,7 +990,7 @@ schema:ObjectMapShape
         ]
         [
             sh:property [
-                sh:path rmls:reference ;
+                sh:path rml:reference ;
                 sh:name "RML reference" ;
                 sh:minCount 1 ;
                 sh:maxCount 1 ;
@@ -1066,9 +1066,9 @@ schema:PredicateMapShape
     sh:name "R2RML rr:predicateMap" ;
     sh:description "R2RML rr:predicateMap specifies the predicate used to generate the triple. It is required to have 1 rr:constant with an IRI as object." ;
     sh:message "R2RML rr:predicateMap violation" ;
-    # Either an rr:template or rmls:reference or rr:constant is required
+    # Either an rr:template or rml:reference or rr:constant is required
     sh:property [
-        sh:path [ sh:alternativePath ( rr:template rmls:reference rr:constant ) ] ;
+        sh:path [ sh:alternativePath ( rr:template rml:reference rr:constant ) ] ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
     ] ;
@@ -1080,7 +1080,7 @@ schema:PredicateMapShape
         sh:nodeKind sh:Literal ;
     ] ;
     sh:property [
-        sh:path rmls:reference ;
+        sh:path rml:reference ;
         sh:name "RML reference" ;
         sh:minCount 0 ;
         sh:maxCount 1 ;
