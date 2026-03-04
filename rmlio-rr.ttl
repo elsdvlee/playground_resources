@@ -19,6 +19,7 @@
   dc:title "R2RML vocabulary"@en;
   rdf:type <http://purl.org/vocommons/voaf#Vocabulary>;
   dc:issued "2012-01-24"^^<http://www.w3.org/2001/XMLSchema#date>;
+  ### TODO add a message about the correction (date, authors?)
   dc:modified "2012-07-16"^^<http://www.w3.org/2001/XMLSchema#date>;
   dc:description "RDB to RDF Mapping Language - Vocabulary"@en;
   dc:creator <http://richard.cyganiak.de/foaf.rdf#cygri>;
@@ -80,8 +81,7 @@
     rdf:type owl:Class;
     owl:unionOf ( :PredicateObjectMap :SubjectMap );
   ].
-
-## TODO add range: If the constant-valued term map is a graph map, then its constant value MUST be an IRI.
+  
 ###  http://www.w3.org/ns/r2rml#graphMap
 :graphMap rdf:type owl:ObjectProperty;
   rdfs:comment "Specifies a GraphMap. When used with a SubjectMap element, all the RDF triples generated from a logical row will be stored in the specified named graph. Otherwise, the RDF triple generated using the (predicate, object) pair will be stored in the specified named graph."@en;
@@ -104,11 +104,10 @@
   rdfs:domain :TriplesMap.
 
 ###  http://www.w3.org/ns/r2rml#object
-:object rdf:type owl:ObjectProperty;
+:object rdf:type owl:Property; 
   rdfs:comment "Specifies the object for the generated triple from the logical table row."@en;
   rdfs:domain :PredicateObjectMap.
 
-## TODO add range If the constant-valued term map is an object map, then its constant value MUST be an IRI or literal.
 ###  http://www.w3.org/ns/r2rml#objectMap
 :objectMap rdf:type owl:ObjectProperty;
   rdfs:comment "An ObjectMap element to generate the object component of the (predicate, object) pair from a logical table row."@en;
@@ -151,8 +150,6 @@
   rdfs:comment "An IRI reference for use as subject for all the RDF triples generated from a logical table row."@en;
   rdfs:domain :TriplesMap.
 
-## TODO add range: If the constant-valued term map is a subject map, then its constant value MUST be an IRI.
-###  http://www.w3.org/ns/r2rml#subjectMap
 :subjectMap rdf:type owl:ObjectProperty;
   rdfs:comment "A SubjectMap element to generate a subject from a logical table row."@en;
   rdfs:range :SubjectMap;
