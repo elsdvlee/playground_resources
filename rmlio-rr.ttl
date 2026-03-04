@@ -128,7 +128,6 @@
   rdfs:comment "Specifies the predicate for the generated triple from the logical table row."@en;
   rdfs:domain :PredicateObjectMap.
 
-### TODO add range If the constant-valued term map is a predicate map, then its constant value MUST be an IRI.
 ###  http://www.w3.org/ns/r2rml#predicateMap
 :predicateMap rdf:type owl:ObjectProperty;
   rdfs:comment "A PredicateMap element to generate the predicate component of the (predicate, object) pair from a logical table row."@en;
